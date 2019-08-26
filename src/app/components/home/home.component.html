@@ -1,0 +1,37 @@
+<div class="wrapper">
+
+  <!-- Sidebar -->
+  <nav id="sidebar">
+    <div routerLink="/home" class="sidebar-header">
+      <h3>Recetas App</h3>
+    </div>
+    <ul class="list-unstyled components">
+      <li>
+        <a routerLink="/home/recipes">Recetas</a>
+      </li>
+      <li>
+        <a>Chefs</a>
+      </li>
+    </ul>
+  </nav>
+
+  <!-- Page Content -->
+  <div class="row">
+    <div class="col-md-12">
+      <router-outlet></router-outlet>
+    </div>
+
+    <!--<nav class="navbar navbar-expand-lg navbar-light bg-light">
+
+      <div class="container-fluid">
+
+        <button type="button" id="sidebarCollapse" class="btn btn-info">
+          <i class="fas fa-align-left"></i>
+          <span>Toggle Sidebar</span>
+        </button>
+
+      </div>
+    </nav>-->
+  </div>
+
+</div>

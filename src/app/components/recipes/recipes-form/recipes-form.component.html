@@ -1,0 +1,81 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      <h1>CREAR RECETA</h1>
+    </div>
+  </div>
+  <br>
+  <div class="row">
+    <div class="col-md-6">
+      <form [formGroup]="createRecipeForm">
+        <div class="form-group">
+          <label>(*) Nombre de la receta</label>
+          <input required type="text" formControlName="name" name="name" class="form-control" id="nameRecipe" placeholder="Nombre de la receta">
+          <div *ngIf="createRecipeForm.controls.name.errors" class="invalid-feedback">
+            <div *ngIf="createRecipeForm.controls.name.required">Nombre es requerido.</div>
+          </div>
+        </div>
+        <label>(*) Ingredientes</label>
+        <form [formGroup]="createRecipeForm" class="form-inline">
+          <div class="form-group mb-2">
+            <input required type="text" formControlName="ingredients" name="name" class="form-control" id="ingredientsRecipe" placeholder="Ingredientes">
+            <div *ngIf="createRecipeForm.controls.ingredients.errors" class="invalid-feedback">
+              <div *ngIf="createRecipeForm.controls.ingredients.required">Ingredientes es requerido.</div>
+            </div>
+          </div>
+          <button [disabled]="disableAddIngredient" (click)="addIngredient()" type="button" class="btn btn-warning mb-2">Agregar ingrediente</button>
+        </form>
+        <label>(*) Lugar origen de la receta</label>
+        <form [formGroup]="createRecipeForm" class="form-inline">
+          <div class="form-group mb-2">
+            <label>Latitud</label>
+            <input required type="number" formControlName="latitude" name="latitude" class="form-control" id="latitudeRecipe" placeholder="Latitud">
+            <div *ngIf="createRecipeForm.controls.latitude.errors" class="invalid-feedback">
+              <div *ngIf="createRecipeForm.controls.latitude.required">Latitud es requerido.</div>
+            </div>
+          </div>
+          <label>Longitud</label>
+          <div class="form-group mb-2">
+            <input required type="number" formControlName="longitude" name="longitude" class="form-control" id="longitudeRecipe" placeholder="Longitud">
+            <div *ngIf="createRecipeForm.controls.longitude.errors" class="invalid-feedback">
+              <div *ngIf="createRecipeForm.controls.longitude.required">Ingredientes es requerido.</div>
+            </div>
+          </div>
+        </form>
+      </form>
+      <br><br><br>
+      <table *ngIf="showTableIngredients" class="table">
+        <thead class="thead-dark">
+          <tr>
+            <th scope="col">Nombre</th>
+            <th scope="col">Acción</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let ingredient of arrayOfIngredients">
+            <th>{{ingredient}}</th>
+            <td>
+              <button (click)="deleteIngredient(ingredient)" class='btn btn-danger'>
+                <i class="fa fa-trash"></i>
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="col-md-6">
+      <form class="formCreate" [formGroup]="createRecipeForm">
+        <div class="form-group">
+          <label>(*) Pasos para cocinar</label>
+          <textarea required type="text" formControlName="steps" name="steps" class="form-control" id="stepsRecipe" placeholder="Pasos para cocinar"
+            cols="30" rows="8"></textarea>
+          <div *ngIf="createRecipeForm.controls.steps.errors" class="invalid-feedback">
+            <div *ngIf="createRecipeForm.controls.steps.required">Pasos para cocinar es requerido.</div>
+          </div>
+        </div>
+        <button routerLink="/home/recipes" type="button" class="btn btn-primary mb-2">Volver</button>
+        <button [disabled]="!createRecipeForm.valid" (click)="createRecipe()" type="button" class="btn btn-success mb-2">Crear receta</button>
+      </form>
+    </div>
+  </div>
+</div>

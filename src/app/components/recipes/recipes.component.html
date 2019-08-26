@@ -1,0 +1,47 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      <h1>RECETAS</h1>
+    </div>
+  </div>
+  <br>
+  <div class="row">
+    <div class="col-md-12">
+      <button routerLink="/home/create-recipe" class="btn btn-primary">Crear receta</button>
+    </div>
+  </div>
+  <br>
+  <div class="row">
+    <div class="col-md-6">
+      <table class="table">
+        <thead class="thead-dark">
+          <tr>
+            <th scope="col">Nombre</th>
+            <th scope="col">Pasos para cocinar</th>
+            <th scope="col">Acciones</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let recipe of recipes">
+            <td>{{recipe.name}}</td>
+            <td>{{recipe.steps}}</td>
+            <td>
+              <button class='btn btn-primary'>
+                <i class="fa fa-pencil"></i>
+              </button>
+              <button (click)="recipeDetails(recipe)" class='btn btn-warning'>
+                <i class="fa fa-info"></i>
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="col-md-6">
+      <agm-map *ngIf="showMap" [latitude]="lat" [longitude]="lng" [zoom]="6">
+        <agm-marker *ngFor="let recipe of recipes" [latitude]="recipe.place.Latitude" [longitude]="recipe.place.Longitude"></agm-marker>
+      </agm-map>
+      <app-recipes-details *ngIf="showRecipeDetails" [recipe]="recipeDetail" (return)="showMapAfterShowDetails($event)"></app-recipes-details>
+    </div>
+  </div>
+</div>
